@@ -1,10 +1,10 @@
 {
-  "name": "es6-module-seed",
+  "name": "xewa",
   "version": "0.1.0",
-  "description": "Seed for creating js modules written in ES6+",
-  "main": "dist/module.min.js",
-  "browser": "dist/module.browser.min.js",
-  "module": "dist/module.module.min.js",
+  "description": "Xewa - javascript application framework",
+  "main": "dist/xewa.min.js",
+  "browser": "dist/xewa.browser.min.js",
+  "module": "dist/xewa.module.min.js",
   "scripts": {
     "docs": "rm -rf docs && jsdoc -R ./README.md -r -c ./jsdoc.json && echo 'Documentation built in ./docs folder'",
     "readme": "pkg-2-readme package.json > README.md -t \"./pkg-2-readme.template.md\" && echo 'README.md file built' || echo 'README.md building error'",
@@ -51,11 +51,11 @@
     "jsdoc": "^3.6.1",
     "jshint": "^2.10.2",
     "rollup": "^1.11.3",
-    "rollup-plugin-babel": "^4.3.2",
+    "@rollup/plugin-babel": "^5.3.0",
     "rollup-plugin-eslint": "^5.1.0",
     "rollup-plugin-filesize": "^6.0.1",
-    "rollup-plugin-json": "^4.0.0",
-    "rollup-plugin-replace": "^2.2.0",
+    "@rollup/plugin-json": "^4.0.0",
+    "@rollup/plugin-replace": "^2.2.0",
     "rollup-plugin-uglify": "^6.0.2"
   }
 }
