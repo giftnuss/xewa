@@ -1,5 +1,6 @@
 {
   "name": "xewa",
+  "type": "module",
   "version": "0.1.0",
   "description": "Xewa - javascript application framework",
   "main": "dist/xewa.min.js",
@@ -13,7 +14,8 @@
     "prebuild": "rm -rf dist",
     "build": "NODE_ENV=production rollup -c -m",
     "release": "yarn build && yarn git-prepare",
-    "test": "echo \"Error: no test specified\" && exit 0"
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "jasmine": "jasmine"
   },
   "repository": {
     "type": "git",
