@@ -1,6 +1,3 @@
-require('enyo');
-
-var utils = require('./utils');
 
 /**
 * Determines OS versions of platforms that need special treatment. Can have one of the following
@@ -26,7 +23,7 @@ var utils = require('./utils');
 * Example:
 * ```javascript
 * // android 2 does not have 3d css
-* if (enyo.platform.android < 3) {
+* if (xewa.platform.android < 3) {
 * 	t = 'translate(30px, 50px)';
 * } else {
 * 	t = 'translate3d(30px, 50px, 0)';
@@ -34,32 +31,9 @@ var utils = require('./utils');
 * this.applyStyle('-webkit-transform', t);
 * ```
 *
-* @module enyo/platform
+* @module xewa/platform
 */
-exports = module.exports = {
-	/**
-	* `true` if the platform has native single-finger [events]{@glossary event}.
-	* @public
-	*/
-	touch: Boolean(('ontouchstart' in window) || window.navigator.msMaxTouchPoints || (window.navigator.msManipulationViewsEnabled && window.navigator.maxTouchPoints)),
-	/**
-	* `true` if the platform has native double-finger [events]{@glossary event}.
-	* @public
-	*/
-	gesture: Boolean(('ongesturestart' in window) || ('onmsgesturestart' in window && (window.navigator.msMaxTouchPoints > 1 || window.navigator.maxTouchPoints > 1)))
 
-	/**
-	* The name of the platform that was detected or `undefined` if the platform
-	* was unrecognized. This value is the key name for the major version of the
-	* platform on the exported object.
-	* @member {String} platformName
-	* @public
-	*/
-
-};
-
-var ua = navigator.userAgent;
-var ep = exports;
 var platforms = [
 	// Windows Phone 7 - 10
 	{platform: 'windowsPhone', regex: /Windows Phone (?:OS )?(\d+)[.\d]+/},
@@ -106,19 +80,53 @@ var platforms = [
 	// Tizen
 	{platform: 'tizen', regex: /Tizen (\d+)/}
 ];
-for (var i = 0, p, m, v; (p = platforms[i]); i++) {
-	m = p.regex.exec(ua);
-	if (m) {
-		if (p.forceVersion) {
-			v = p.forceVersion;
-		} else {
-			v = Number(m[1]);
+
+var Platform = function () {
+	
+    var ua = window.navigator.userAgent;
+    
+	var res = {
+		/**
+		* `true` if the platform has native single-finger [events]{@glossary event}.
+		* @public
+		*/
+		touch: Boolean(('ontouchstart' in window) || window.navigator.msMaxTouchPoints || (window.navigator.msManipulationViewsEnabled && window.navigator.maxTouchPoints)),
+		/**
+		* `true` if the platform has native double-finger [events]{@glossary event}.
+		* @public
+		*/
+		gesture: Boolean(('ongesturestart' in window) || ('onmsgesturestart' in window && (window.navigator.msMaxTouchPoints > 1 || window.navigator.maxTouchPoints > 1)))
+    }
+    
+	/**
+	* The name of the platform that was detected or `undefined` if the platform
+	* was unrecognized. This value is the key name for the major version of the
+	* platform on the exported object.
+	* @member {String} platformName
+	* @public
+	*/
+	for (var i = 0, p, m, v; (p = platforms[i]); i++) {
+		m = p.regex.exec(ua);
+		if (m) {
+			if (p.forceVersion) {
+				v = p.forceVersion;
+			} else {
+				v = Number(m[1]);
+			}
+			res[p.platform] = v;
+			if (p.extra) {
+				utils.mixin(ep, p.extra);
+			}
+			res.platformName = p.platform;
+			break;
 		}
-		ep[p.platform] = v;
-		if (p.extra) {
-			utils.mixin(ep, p.extra);
-		}
-		ep.platformName = p.platform;
-		break;
 	}
-}
+
+    return res;
+};
+
+
+
+
+
+export { Platform as default };
