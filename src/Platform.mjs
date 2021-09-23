@@ -34,7 +34,7 @@
 * @module xewa/platform
 */
 
-import merge from "./utils.mjs";
+import { merge } from "./utils.mjs";
 
 var platforms = [
 	// Windows Phone 7 - 10
@@ -117,7 +117,7 @@ var Platform = function () {
 			}
 			res[p.platform] = v;
 			if (p.extra) {
-				merge(res, p.extra);
+				merge(res,p.extra);
 			}
 			res.platformName = p.platform;
 			break;

@@ -39,9 +39,9 @@ describe("Check platform detection", function() {
 	window.navigator.userAgent ="Mozilla/5.0 (PlayStation Vita 3.30) AppleWebKit/537.73 (KHTML, like Gecko) Silk/3.2";
 	
 	var p = new Platform;
-	console.log(p);
 	expect("android" in p).toBe(true);
 	expect(p.android).toBe(4);
+	expect(p.silk).toBe(3);
   });
 });
 
