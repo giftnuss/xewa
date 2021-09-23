@@ -9,11 +9,11 @@
   "scripts": {
     "docs": "rm -rf docs && jsdoc -R ./README.md -r -c ./jsdoc.json && echo 'Documentation built in ./docs folder'",
     "readme": "pkg-2-readme package.json > README.md -t \"./pkg-2-readme.template.md\" && echo 'README.md file built' || echo 'README.md building error'",
-    "git-prepare": "changelog && echo 'CHANGELOG.md file built' && yarn readme && yarn docs",
+    "git-prepare": "changelog && echo 'CHANGELOG.md file built' && npm run readme && npm run docs",
     "build:dev": "rollup -c -w",
     "prebuild": "rm -rf dist",
     "build": "NODE_ENV=production rollup -c -m",
-    "release": "yarn build && yarn git-prepare",
+    "release": "npm run build && npm run git-prepare",
     "test": "echo \"Error: no test specified\" && exit 0",
       "jasmine": "jasmine",
       "setup": "npm run setup-lodash-es",
