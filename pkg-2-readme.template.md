@@ -75,7 +75,7 @@ npm test
 {{/testOutput}}
 
 {{#license}}
-## License
+## Copyright and License Information
 {{license}}
 {{/license}}
 
