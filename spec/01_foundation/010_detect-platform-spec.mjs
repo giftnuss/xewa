@@ -4,6 +4,7 @@
  * Todo: 
  * * Collect new useragent strings from http://www.browser-info.net/useragents
  * * ! - Test Silk!!! => utils.mixin?
+ * Check if playstation behaves like android
  */
 
 import Platform from './../../src/Platform.mjs';
@@ -26,12 +27,21 @@ describe("Check platform detection", function() {
 	expect("androidChrome" in p).toBe(true);
   });
   
-  it("Useragent string is 20	Mozilla/5.0 (iPad; U; CPU OS 5_1 like Mac OS X) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B367 Safari/531.21.10 UCBrowser/3.4.3.532", function() {
-	window.navigator.userAgent = "20	Mozilla/5.0 (iPad; U; CPU OS 5_1 like Mac OS X) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B367 Safari/531.21.10 UCBrowser/3.4.3.532";
+  it("Useragent string is Mozilla/5.0 (iPad; U; CPU OS 5_1 like Mac OS X) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B367 Safari/531.21.10 UCBrowser/3.4.3.532", function() {
+	window.navigator.userAgent = "Mozilla/5.0 (iPad; U; CPU OS 5_1 like Mac OS X) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B367 Safari/531.21.10 UCBrowser/3.4.3.532";
 	
 	var p = new Platform;
 	expect("ios" in p).toBe(true);
 	expect(p.ios).toBe(5);
+  });
+  
+  it("Useragent string is Mozilla/5.0 (PlayStation Vita 3.30) AppleWebKit/537.73 (KHTML, like Gecko) Silk/3.2", function () {
+	window.navigator.userAgent ="Mozilla/5.0 (PlayStation Vita 3.30) AppleWebKit/537.73 (KHTML, like Gecko) Silk/3.2";
+	
+	var p = new Platform;
+	console.log(p);
+	expect("android" in p).toBe(true);
+	expect(p.android).toBe(4);
   });
 });
 

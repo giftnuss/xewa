@@ -34,6 +34,8 @@
 * @module xewa/platform
 */
 
+import merge from "./utils.mjs";
+
 var platforms = [
 	// Windows Phone 7 - 10
 	{platform: 'windowsPhone', regex: /Windows Phone (?:OS )?(\d+)[.\d]+/},
@@ -115,7 +117,7 @@ var Platform = function () {
 			}
 			res[p.platform] = v;
 			if (p.extra) {
-				utils.mixin(ep, p.extra);
+				merge(res, p.extra);
 			}
 			res.platformName = p.platform;
 			break;
@@ -124,9 +126,5 @@ var Platform = function () {
 
     return res;
 };
-
-
-
-
 
 export { Platform as default };

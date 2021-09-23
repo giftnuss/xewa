@@ -39,6 +39,9 @@
   "files": [
     "dist"
   ],
+  "Dependencies": {
+	"lodash": "^4.17.21"
+  },
   "devDependencies": {
     "@babel/core": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
