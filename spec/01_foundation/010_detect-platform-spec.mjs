@@ -2,8 +2,7 @@
 
 /**
  * Todo: 
- * * Collect new useragent strings from http://www.browser-info.net/useragents
- * * ! - Test Silk!!! => utils.mixin?
+ * Collect new useragent strings from http://www.browser-info.net/useragents
  * Check if playstation behaves like android
  */
 
