@@ -9,8 +9,6 @@ import slice from "lodash/slice.js";
 /**
  * merge - from lodash library
  *
- * This function replaces utils.mixin from enyojs.
- *
  * This method is like `_.assign` except that it recursively merges own and
  * inherited enumerable string keyed properties of source objects into the
  * destination object. Source properties that resolve to `undefined` are
