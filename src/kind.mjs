@@ -2,7 +2,7 @@
 
 import { merge } from "./utils.mjs";
 
-import { isFunction, isNull } from "./typecheck.mjs";
+import { isArray, isFunction, isNull } from "./typecheck.mjs";
 
 /**
  * Creates a JavaScript constructor function with a prototype defined by _inProps_.
@@ -205,5 +205,84 @@ const concatHandler = function (ctor, props, instance) {
 		base = base.prototype.base;
 	}
 };
+
+/**
+* @private
+*/
+var concatenated = [];
+
+const Inherited = function (fn) {
+	this.fn = fn;
+};
+
+/**
+* When defining a method that overrides an existing method in a [kind]{@glossary kind}, you
+* can wrap the definition in this function and it will decorate it appropriately for inheritance
+* to work.
+*
+* The older `this.inherited(arguments)` method still works, but this version results in much
+* faster code and is the only one supported for kind [mixins]{@glossary mixin}.
+*
+* @param {Function} fn - A [function]{@glossary Function} that takes a single
+*   argument (usually named `sup`) and returns a function where
+*   `sup.apply(this, arguments)` is used as a mechanism to make the
+*   super-call.
+* @public
+*/
+kind.inherit = function (fn) {
+	return new Inherited(fn);
+};
+
+/**
+* @private
+*/
+const isInherited = function (fn) {
+	return fn && (fn instanceof Inherited);
+};
+
+/**
+ * Allows for extension of the current [kind]{@glossary kind} without
+ * creating a new kind. This method is available on all
+ * [constructors]{@glossary constructor}, although calling it on a
+ * [deferred]{@glossary deferred} constructor will force it to be
+ * resolved at that time. This method does not re-run the
+ * {@link module:enyo/kind.features} against the constructor or instance.
+ *
+ * @name module:enyo/kind.extend
+ * @method
+ * @param {Object|Object[]} props A [hash]{@glossary Object} or [array]{@glossary Array}
+ *	of [hashes]{@glossary Object}. Properties will override
+ *	[prototype]{@glossary Object.prototype} properties. If a
+ *	method that is being added already exists, the new method will
+ *	supersede the existing one. The method may call
+ *	`this.inherited()` or be wrapped with `kind.inherit()` to call
+ *	the original method (this chains multiple methods tied to a
+ *	single [kind]{@glossary kind}).
+ * @param {Object} [target] - The instance to be extended. If this is not specified, then the
+ *	[constructor]{@glossary constructor} of the
+ *	[object]{@glossary Object} this method is being called on will
+ *	be extended.
+ * @returns {Object} The constructor of the class, or specific
+ *	instance, that has been extended.
+ * @public
+ */
+const extend = function (props, target) {
+	var ctor = this
+		, exts = isArray(props) ? props : [props]
+		, proto, fn;
+
+	fn = function (key, value) {
+		return !(isFunction(value) || isInherited(value)) && concatenated.indexOf(key) === -1;
+	};
+
+	proto = target || ctor.prototype;
+	for (var i=0, ext; (ext=exts[i]); ++i) {
+		kind.concatHandler(proto, ext, true);
+		kind.extendMethods(proto, ext, true);
+		utils.mixin(proto, ext, {filter: fn});
+	}
+
+	return target || ctor;
+}
 
 export { kind as default };
