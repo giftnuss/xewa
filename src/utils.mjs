@@ -4,10 +4,11 @@
  */
 import concat from "lodash/concat.js";
 import merge from "lodash/merge.js";
+import pickBy from "lodash/pickBy.js";
 import slice from "lodash/slice.js";
 
 /**
- * merge - from lodash library
+ * merge
  *
  * This method is like `_.assign` except that it recursively merges own and
  * inherited enumerable string keyed properties of source objects into the
@@ -36,6 +37,26 @@ import slice from "lodash/slice.js";
  * // => { 'a': [{ 'b': 2, 'c': 3 }, { 'd': 4, 'e': 5 }] }
  */
 export { merge };
+
+/**
+ * Creates an object composed of the `object` properties `predicate` returns
+ * truthy for. The predicate is invoked with two arguments: (value, key).
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Object
+ * @param {Object} object The source object.
+ * @param {Function} [predicate=_.identity] The function invoked per property.
+ * @returns {Object} Returns the new object.
+ * @example
+ *
+ * var object = { 'a': 1, 'b': '2', 'c': 3 };
+ *
+ * _.pickBy(object, _.isNumber);
+ * // => { 'a': 1, 'c': 3 }
+ */
+export { pickBy };
 
 /**
 * Clones an existing [Array]{@glossary Array}, or converts an array-like
