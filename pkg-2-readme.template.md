@@ -6,6 +6,13 @@ v{{version}}
 
 Please feel free to ask for modifications, fixes or do a PR to improve it
 
+## Development Documentation
+
+Code style will be learned from the following ressources:
+
+* [JavaScript -- The Right Way](https://jstherightway.org/)
+* https://github.com/rwaldron/idiomatic.js
+
 {{#author}}
 ## Author
 {{author_name}}

@@ -21,7 +21,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/blackmirror1980/es6-module-seed.git"
+    "url": "https://github.com/giftnuss/xewa.git"
   },
   "keywords": [
     "es6",
@@ -30,20 +30,17 @@
     "seed",
     "rollup-js"
   ],
-  "author": "Black Mirror",
+  "author": "Polis Subdance",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/blackmirror1980/es6-module-seed/issues"
+    "url": "https://github.com/giftnuss/xewa/issues"
   },
-  "homepage": "https://github.com/blackmirror1980/es6-module-seed#readme",
-  "documentation": "https://blackmirror1980.github.io/es6-module-seed/docs/index.html",
+  "homepage": "https://github.com/giftnuss/xewa",
+  "documentation": "docs/",
   "todo": "https://github.com/blackmirror1980/es6-module-seed#todo",
   "files": [
     "dist"
   ],
-  "Dependencies": {
-    "lodash": "^4.17.21"
-  },
   "devDependencies": {
     "@babel/core": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
@@ -51,6 +48,7 @@
     "@rollup/plugin-json": "^4.0.0",
     "@rollup/plugin-replace": "^2.2.0",
     "docdash": "^1.1.0",
+    "docsify-cli": "^4.4.3",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.17.2",
@@ -62,10 +60,15 @@
     "jshint": "^2.10.2",
     "lodash-cli": "^4.17.5",
     "npe": "^1.1.4",
+    "nyc": "^15.1.0",
     "pkg-2-readme": "^0.0.6",
     "rollup": "^1.11.3",
     "rollup-plugin-eslint": "^5.1.0",
     "rollup-plugin-filesize": "^6.0.1",
-    "rollup-plugin-uglify": "^6.0.2"
+    "rollup-plugin-uglify": "^6.0.2",
+    "tap": "^15.0.10"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
   }
 }
