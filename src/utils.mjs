@@ -2,10 +2,10 @@
 /**
  * utils - common utility functions
  */
-import concat from "lodash/concat.js";
-import merge from "lodash/merge.js";
-import pickBy from "lodash/pickBy.js";
-import slice from "lodash/slice.js";
+import concat from "lodash-es/concat.js";
+import merge from "lodash-es/merge.js";
+import pickBy from "lodash-es/pickBy.js";
+import slice from "lodash-es/slice.js";
 
 /**
  * merge
